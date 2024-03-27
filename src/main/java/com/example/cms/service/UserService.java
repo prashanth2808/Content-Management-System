@@ -12,5 +12,8 @@ public interface UserService {
 	
 	public ResponseEntity<ResponseStructure<UserResponse>>  saveUser(UserRequest request);
 	
-	//public ResponseEntity<ResponseStructure<UserResponse>>  finduserbyid(int id);
+	public ResponseEntity<ResponseStructure<UserResponse>>  finduserbyid(int id);
+	
+	public ResponseEntity<ResponseStructure<String>> deleteuser(int id);
+	
 }
