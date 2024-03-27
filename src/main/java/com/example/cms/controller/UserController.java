@@ -2,7 +2,9 @@ package com.example.cms.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,13 +37,30 @@ public class UserController {
 		return "Hello from CMS";
 	}
 
-	
-	
+
+
 	@Operation (description = "The endpoint is used save the userdata ", responses = {@ApiResponse( responseCode = "200",description = "User saved"),
 			@ApiResponse(responseCode = "400",description = "Invalid inputs",content =  @Content(schema = @Schema(implementation = ErrorStructure .class )   )  )	})
 	@PostMapping("/users/register")
 	public ResponseEntity<ResponseStructure<UserResponse>> saveUser(@Valid @RequestBody UserRequest    request  ){
 		return service.saveUser(request );
+	}
+
+
+	@Operation(description = "This operation is used to delete the user",responses = {@ApiResponse(responseCode = "200",description = "User deleted"  ),
+			@ApiResponse(responseCode = "400",description = "Invalid input",content = @Content(schema = @Schema(implementation = ErrorStructure.class))  )  }) 
+	@DeleteMapping("/users/{userid}")
+	public ResponseEntity<ResponseStructure<String>> deleteuser( @PathVariable int userid)
+	{
+		return service.deleteuser(userid);
+	}
+
+	@GetMapping("/users/{userid}")
+	@Operation (description = "The method is used to find user by id", responses = {@ApiResponse(responseCode = "200",description = "User found" ),
+			@ApiResponse(responseCode = "400",description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorStructure.class)  ) )  })
+	public ResponseEntity<ResponseStructure<UserResponse>> finduserbyid(@PathVariable int userid)
+	{
+		return service.finduserbyid(userid);
 	}
 
 }
