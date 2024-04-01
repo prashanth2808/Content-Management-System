@@ -3,6 +3,7 @@ package com.example.cms.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,6 +16,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -45,4 +48,6 @@ public class User {
 	private LocalDateTime lastModifiedAt;
 	private Boolean deleteuser;
 	
+	@OneToMany (mappedBy = "user")
+	private List<Blogs> blogs;
 }

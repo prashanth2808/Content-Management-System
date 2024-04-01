@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.example.cms.dto.UserRequest;
-import com.example.cms.dto.UserResponse;
 import com.example.cms.entity.User;
+import com.example.cms.request.UserRequest;
+import com.example.cms.response.UserResponse;
 import com.example.cms.service.UserService;
 import com.example.cms.util.ErrorStructure;
 import com.example.cms.util.ResponseStructure;
@@ -37,8 +37,6 @@ public class UserController {
 		return "Hello from CMS";
 	}
 
-
-
 	@Operation (description = "The endpoint is used save the userdata ", responses = {@ApiResponse( responseCode = "200",description = "User saved"),
 			@ApiResponse(responseCode = "400",description = "Invalid inputs",content =  @Content(schema = @Schema(implementation = ErrorStructure .class )   )  )	})
 	@PostMapping("/users/register")
@@ -62,5 +60,4 @@ public class UserController {
 	{
 		return service.finduserbyid(userid);
 	}
-
 }
