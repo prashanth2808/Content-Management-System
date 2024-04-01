@@ -12,12 +12,11 @@ public class ResponseStructure<T> {
 	private String message;
 	private T data;
 
-
-
 	public ResponseStructure<T> setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 		return this;
 	}
+
 	public ResponseStructure<T> setMessage(String message) {
 		this.message = message;
 		return this;
@@ -27,5 +26,4 @@ public class ResponseStructure<T> {
 		this.data = data;
 		return this;
 	}
-
 }
